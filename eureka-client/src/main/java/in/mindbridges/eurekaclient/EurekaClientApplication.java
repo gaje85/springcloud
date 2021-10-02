@@ -3,6 +3,7 @@ package in.mindbridges.eurekaclient;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.ServiceInstance;
@@ -24,10 +25,18 @@ class ServiceInstanceRestController {
 
 	@Autowired
 	private DiscoveryClient discoveryClient;
+	
+	@Value("${spring.application.instance_id}")
+	private String applicationInstanceId;
 
 	@RequestMapping("/service-instances/{applicationName}")
 	public List<ServiceInstance> serviceInstancesByApplicationName(
 			@PathVariable String applicationName) {
 		return this.discoveryClient.getInstances(applicationName);
+	}
+	
+	@RequestMapping("/foo")
+	public String foo() {
+		return "This is from eureka-client: " + applicationInstanceId;
 	}
 }

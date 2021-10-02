@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: zuul-api-gateway
+server:
+  port: 8081
+  
+zuul:
+  routes:
+    eureka-client:
+      path: /eureka-client/**
+      url: http://localhost:8080/ 
