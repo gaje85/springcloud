@@ -22,6 +22,8 @@ Browse to http://your_host:9411 to find traces!
 				<artifactId>spring-cloud-starter-zipkin</artifactId>
 	</dependency>
 
+- 	- Access http://localhost:8080/order, this will generate random orderId, log it and calls another microservice (https://github.com/gaje85/springcloud/tree/main/order-service) running on http://localhost:8083/ to pass the generated orderID. You can verify the logs for both microservice and search for generated trace id to see the timing information of the microservice calls in Zipkin server.
+
 	
 3. You can also check your application logs which will contain below information:
 
